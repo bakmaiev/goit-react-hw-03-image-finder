@@ -1,11 +1,23 @@
-import React from 'react';
+import { Modal } from 'components/Modal';
+import React, { Component } from 'react';
 
-const ImageGalleryItem = ({ webformatURL, largeImageURL, name }) => {
-  return (
-    <li className="gallery-item">
-      <img src={webformatURL} alt={name} />
-    </li>
-  );
-};
+export class ImageGalleryItem extends Component {
+  state = { isShowModal: false };
 
-export default ImageGalleryItem;
+  toggleModal = () => {
+    this.setState({ isShowModal: true });
+  };
+
+  render() {
+    const { webformatURL, largeImageURL, tags } = this.props;
+
+    return (
+      <>
+        <li className="image-gallery-item">
+          <img src={webformatURL} alt={tags} />
+        </li>
+        <Modal largeImageURL={largeImageURL} />
+      </>
+    );
+  }
+}

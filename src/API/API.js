@@ -4,12 +4,11 @@ const BASE_URL = 'https://pixabay.com/api/';
 const API_KEY = '34958715-9ce4ce8564d7b2e391d81a960';
 
 const options = {
-  page: 1,
   per_page: 12,
   totalImages: null,
 };
 
-export const fetchCard = async imageName => {
+export const fetchCard = async (imageName, page) => {
   try {
     return axios.get(`${BASE_URL}`, {
       params: {
@@ -18,7 +17,7 @@ export const fetchCard = async imageName => {
         image_type: 'photo',
         orientation: 'horizontal',
         safesearch: 'true',
-        page: options.page,
+        page,
         per_page: options.per_page,
       },
     });
@@ -27,18 +26,6 @@ export const fetchCard = async imageName => {
   }
 };
 
-// export const resetPage = () => {
-//   options.page = 1;
-// };
-
-// export const incrementPage = () => {
-//   options.page += 1;
-// };
-
-// export const setTotal = total => {
-//   this.totalImages = total;
-// };
-
-// export const hasMoreImages = () => {
-//   return options.page < Math.ceil(this.totalImages / this.per_page);
-// };
+export const hasMoreImages = (page, total) => {
+  return page < Math.ceil(total / options.per_page);
+};

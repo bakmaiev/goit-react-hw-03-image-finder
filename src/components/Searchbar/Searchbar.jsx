@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-class Searchbar extends Component {
+export class Searchbar extends Component {
   state = {
     imagesName: '',
   };
@@ -18,7 +18,7 @@ class Searchbar extends Component {
   };
 
   handleChangeName = e => {
-    this.setState({ imagesName: e.currentTarget.value.toLowerCase() });
+    this.setState({ imagesName: e.currentTarget.value });
   };
 
   render() {
@@ -43,5 +43,3 @@ class Searchbar extends Component {
     );
   }
 }
-
-export default Searchbar;
