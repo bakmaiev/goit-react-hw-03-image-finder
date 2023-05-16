@@ -5,7 +5,7 @@ export class ImageGalleryItem extends Component {
   state = { isShowModal: false };
 
   toggleModal = () => {
-    this.setState({ isShowModal: true });
+    this.setState(({ isShowModal }) => ({ isShowModal: !isShowModal }));
   };
 
   render() {
@@ -14,9 +14,15 @@ export class ImageGalleryItem extends Component {
     return (
       <>
         <li className="image-gallery-item">
-          <img src={webformatURL} alt={tags} />
+          <img src={webformatURL} alt={tags} onClick={this.toggleModal} />
         </li>
-        <Modal largeImageURL={largeImageURL} />
+        {this.state.isShowModal && (
+          <Modal
+            largeImageURL={largeImageURL}
+            altText={tags}
+            onClose={this.toggleModal}
+          />
+        )}
       </>
     );
   }
