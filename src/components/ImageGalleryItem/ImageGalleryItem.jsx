@@ -1,5 +1,6 @@
-import { Modal } from 'components/Modal';
 import React, { Component } from 'react';
+import { Modal } from 'components/Modal';
+import { StyledGalleryItem } from './ImageGalleryItem.styled';
 
 export class ImageGalleryItem extends Component {
   state = { isShowModal: false };
@@ -13,9 +14,14 @@ export class ImageGalleryItem extends Component {
 
     return (
       <>
-        <li className="image-gallery-item">
-          <img src={webformatURL} alt={tags} onClick={this.toggleModal} />
-        </li>
+        <StyledGalleryItem>
+          <img
+            src={webformatURL}
+            alt={tags}
+            onClick={this.toggleModal}
+            className="image"
+          />
+        </StyledGalleryItem>
         {this.state.isShowModal && (
           <Modal
             largeImageURL={largeImageURL}

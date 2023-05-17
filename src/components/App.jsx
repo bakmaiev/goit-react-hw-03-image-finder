@@ -6,6 +6,7 @@ import { ImageGallery } from './ImageGallery';
 import { fetchCard, hasMoreImages } from 'API';
 import { Loader } from './Loader';
 import { Button } from './Button';
+import { StyledAppComponent } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -13,6 +14,7 @@ export class App extends Component {
     value: '',
     page: 1,
     isLoading: false,
+    totalImages: 0,
   };
 
   componentDidUpdate(_, prevState) {
@@ -51,7 +53,7 @@ export class App extends Component {
         );
       }
 
-      if (!hasMoreImages(page, data.totalHits)) {
+      if (!hasMoreImages(page, data.totalHits) && data.totalHits !== 0) {
         toast.info(
           "We're sorry, but you've reached the end of search results."
         );
@@ -59,6 +61,7 @@ export class App extends Component {
 
       this.setState(prevState => ({
         images: page === 1 ? data.hits : [...prevState.images, ...data.hits],
+        totalImages: data.totalHits,
       }));
     } catch (err) {
       console.log(err);
@@ -85,6 +88,7 @@ export class App extends Component {
       value: value,
       page: 1,
       images: [],
+      totalImages: 0,
     });
   };
 
@@ -99,17 +103,17 @@ export class App extends Component {
   };
 
   render() {
-    const { images, isLoading } = this.state;
+    const { images, isLoading, totalImages, page } = this.state;
     return (
-      <>
+      <StyledAppComponent>
         <Searchbar onSubmit={this.handleFormSubmit} />
         {isLoading && <Loader />}
         {images && <ImageGallery data={this.state.images} />}
-        {images.length > 0 && isLoading === false && (
+        {isLoading === false && hasMoreImages(page, totalImages) && (
           <Button onClick={this.handleLoadMore} />
         )}
         <ToastContainer />
-      </>
+      </StyledAppComponent>
     );
   }
 }

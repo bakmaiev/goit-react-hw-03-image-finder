@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
+import { StyledSearchbar } from './Searchbar.styled';
 export class Searchbar extends Component {
   state = {
     imagesName: '',
@@ -23,7 +24,7 @@ export class Searchbar extends Component {
 
   render() {
     return (
-      <header className="searchbar">
+      <StyledSearchbar>
         <form className="form" onSubmit={this.handleSubmit}>
           <button type="submit" className="button">
             <span className="button-label">Search</span>
@@ -39,7 +40,7 @@ export class Searchbar extends Component {
             onChange={this.handleChangeName}
           />
         </form>
-      </header>
+      </StyledSearchbar>
     );
   }
 }

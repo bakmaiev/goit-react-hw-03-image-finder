@@ -1,9 +1,10 @@
-import { ImageGalleryItem } from 'components/ImageGalleryItem';
 import React from 'react';
+import { ImageGalleryItem } from 'components/ImageGalleryItem';
+import { StyledListGallery } from './ImageGallery.styled';
 
 export const ImageGallery = ({ data }) => {
   return (
-    <ul className="gallery">
+    <StyledListGallery>
       {data.map(image => {
         return (
           <ImageGalleryItem
@@ -15,6 +16,6 @@ export const ImageGallery = ({ data }) => {
           />
         );
       })}
-    </ul>
+    </StyledListGallery>
   );
 };
