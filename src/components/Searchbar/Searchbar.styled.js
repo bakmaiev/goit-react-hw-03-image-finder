@@ -33,7 +33,6 @@ export const StyledSearchbar = styled.header`
     width: 48px;
     height: 48px;
     border: 0;
-    background-image: url('https://image.flaticon.com/icons/svg/149/149852.svg');
     background-size: 40%;
     background-repeat: no-repeat;
     background-position: center;
@@ -73,5 +72,10 @@ export const StyledSearchbar = styled.header`
   & .input::placeholder {
     font: inherit;
     font-size: 18px;
+  }
+
+  & .icon {
+    width: 25px;
+    height: 50px;
   }
 `;
