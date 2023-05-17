@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ImageGalleryItem } from 'components/ImageGalleryItem';
 import { StyledListGallery } from './ImageGallery.styled';
 
@@ -18,4 +19,8 @@ export const ImageGallery = ({ data }) => {
       })}
     </StyledListGallery>
   );
+};
+
+ImageGallery.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

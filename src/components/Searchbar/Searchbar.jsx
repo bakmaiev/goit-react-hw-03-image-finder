@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { toast } from 'react-toastify';
 import { StyledSearchbar } from './Searchbar.styled';
+import { AiOutlineSearch } from 'react-icons/ai';
+import { toast } from 'react-toastify';
 export class Searchbar extends Component {
   state = {
     imagesName: '',
@@ -28,6 +29,7 @@ export class Searchbar extends Component {
         <form className="form" onSubmit={this.handleSubmit}>
           <button type="submit" className="button">
             <span className="button-label">Search</span>
+            <AiOutlineSearch className="icon" />
           </button>
 
           <input
